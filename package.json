@@ -1,0 +1,16 @@
+{
+  "name": "otp-scraper",
+  "version": "1.0.0",
+  "description": "Scraper for the On Taking Pictures podcast that records each episode's Photographer of the Week into a CSV.",
+  "type": "module",
+  "bin": {
+    "otp-scrape": "scrape.js"
+  },
+  "scripts": {
+    "scrape": "node scrape.js",
+    "backfill": "node scrape.js --backfill",
+    "dry-run": "node scrape.js --dry-run",
+    "build-html": "node build-html.js",
+    "update-episode": "node update-episode.js"
+  }
+}
