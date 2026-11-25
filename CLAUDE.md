@@ -45,6 +45,18 @@ Edge cases:
 
 Touch only the new entry: don't reformat or reorder the rest of the file.
 
+## Automatic check
+
+`scripts/check_episode.py` does all of the above on its own: it reads
+https://ontakingpictures.com/feed/, asks `claude -p` for the photographer,
+adds and commits each new episode, pushes, and pings Telegram (credentials in
+`~/.config/tg-bot.env`: `BOT_TOKEN`, `MY_ID`). launchd runs it Tue–Fri at
+21:00 via `scripts/net.mikesub.otp-check.plist`, installed as a copy in
+`~/Library/LaunchAgents/`. After editing the plist, copy it again and run
+`launchctl bootout gui/$(id -u)/net.mikesub.otp-check` then
+`launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/net.mikesub.otp-check.plist`.
+Log: `~/Library/Logs/otp-check.log`. Test with `scripts/check_episode.py --dry-run`.
+
 ## Committing
 
 One commit per episode, and the commit message is just the episode number
